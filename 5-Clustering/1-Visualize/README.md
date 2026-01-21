@@ -5,7 +5,9 @@ Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsup
 [![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
 > 🎥 Click the image above for a video. While you're studying machine learning with clustering, enjoy some Nigerian Dance Hall tracks - this is a highly rated song from 2014 by PSquare.
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/27/)
+
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
+
 ### Introduction
 
 [Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) is very useful for data exploration. Let's see if it can help discover trends and patterns in the way Nigerian audiences consume music.
@@ -258,7 +260,7 @@ Note, when the top genre is described as 'Missing', that means that Spotify did 
 1. Do a quick test to see if the data correlates in any particularly strong way:
 
     ```python
-    corrmat = df.corr()
+    corrmat = df.corr(numeric_only=True)
     f, ax = plt.subplots(figsize=(12, 9))
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
@@ -300,7 +302,7 @@ Are these three genres significantly different in the perception of their dancea
 1. Create a scatter plot:
 
     ```python
-    sns.FacetGrid(df, hue="artist_top_genre", size=5) \
+    sns.FacetGrid(df, hue="artist_top_genre", height=5) \
        .map(plt.scatter, "popularity", "danceability") \
        .add_legend()
     ```
@@ -317,7 +319,7 @@ In general, for clustering, you can use scatterplots to show clusters of data, s
 
 In preparation for the next lesson, make a chart about the various clustering algorithms you might discover and use in a production environment. What kinds of problems is the clustering trying to address?
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Review & Self Study
 

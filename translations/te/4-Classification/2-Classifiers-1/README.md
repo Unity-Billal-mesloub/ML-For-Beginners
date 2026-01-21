@@ -1,0 +1,257 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "1a6e9e46b34a2e559fbbfc1f95397c7b",
+  "translation_date": "2025-12-19T15:30:48+00:00",
+  "source_file": "4-Classification/2-Classifiers-1/README.md",
+  "language_code": "te"
+}
+-->
+# వంటకాల వర్గీకరణలు 1
+
+ఈ పాఠంలో, మీరు గత పాఠం నుండి సేవ్ చేసిన సమతుల్యమైన, శుభ్రమైన వంటకాల డేటా సెట్‌ను ఉపయోగిస్తారు.
+
+మీరు ఈ డేటా సెట్‌ను వివిధ వర్గీకరణలతో ఉపయోగించి _ఒక సమూహం పదార్థాల ఆధారంగా ఒక జాతీయ వంటకాన్ని అంచనా వేయడానికి_ ప్రయత్నిస్తారు. ఈ ప్రక్రియలో, వర్గీకరణ పనుల కోసం అల్గోరిథమ్స్‌ను ఎలా ఉపయోగించవచ్చో మీరు మరింత తెలుసుకుంటారు.
+
+## [పాఠం ముందు క్విజ్](https://ff-quizzes.netlify.app/en/ml/)
+# సిద్ధత
+
+మీరు [పాఠం 1](../1-Introduction/README.md) పూర్తి చేశారని అనుకుంటే, ఈ నాలుగు పాఠాల కోసం రూట్ `/data` ఫోల్డర్‌లో _cleaned_cuisines.csv_ ఫైల్ ఉందని నిర్ధారించుకోండి.
+
+## వ్యాయామం - జాతీయ వంటకాన్ని అంచనా వేయండి
+
+1. ఈ పాఠంలోని _notebook.ipynb_ ఫోల్డర్‌లో పని చేస్తూ, ఆ ఫైల్‌ను మరియు Pandas లైబ్రరీని దిగుమతి చేసుకోండి:
+
+    ```python
+    import pandas as pd
+    cuisines_df = pd.read_csv("../data/cleaned_cuisines.csv")
+    cuisines_df.head()
+    ```
+
+    డేటా ఇలా ఉంటుంది:
+
+|     | Unnamed: 0 | cuisine | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood | yam | yeast | yogurt | zucchini |
+| --- | ---------- | ------- | ------ | -------- | ----- | ---------- | ----- | ------------ | ------- | -------- | --- | ------- | ----------- | ---------- | ----------------------- | ---- | ---- | --- | ----- | ------ | -------- |
+| 0   | 0          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
+| 1   | 1          | indian  | 1      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
+| 2   | 2          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
+| 3   | 3          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
+| 4   | 4          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 1      | 0        |
+  
+
+1. ఇప్పుడు, మరికొన్ని లైబ్రరీలను దిగుమతి చేసుకోండి:
+
+    ```python
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.model_selection import train_test_split, cross_val_score
+    from sklearn.metrics import accuracy_score,precision_score,confusion_matrix,classification_report, precision_recall_curve
+    from sklearn.svm import SVC
+    import numpy as np
+    ```
+
+1. X మరియు y కోఆర్డినేట్లను రెండు డేటాఫ్రేమ్‌లుగా విభజించండి. `cuisine` లేబుల్స్ డేటాఫ్రేమ్ కావచ్చు:
+
+    ```python
+    cuisines_label_df = cuisines_df['cuisine']
+    cuisines_label_df.head()
+    ```
+
+    ఇది ఇలా కనిపిస్తుంది:
+
+    ```output
+    0    indian
+    1    indian
+    2    indian
+    3    indian
+    4    indian
+    Name: cuisine, dtype: object
+    ```
+
+1. ఆ `Unnamed: 0` కాలమ్ మరియు `cuisine` కాలమ్‌ను `drop()` పిలిచి తొలగించండి. మిగతా డేటాను శిక్షణ ఫీచర్లుగా సేవ్ చేయండి:
+
+    ```python
+    cuisines_feature_df = cuisines_df.drop(['Unnamed: 0', 'cuisine'], axis=1)
+    cuisines_feature_df.head()
+    ```
+
+    మీ ఫీచర్లు ఇలా ఉంటాయి:
+
+|      | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | artemisia | artichoke |  ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood |  yam | yeast | yogurt | zucchini |
+| ---: | -----: | -------: | ----: | ---------: | ----: | -----------: | ------: | -------: | --------: | --------: | ---: | ------: | ----------: | ---------: | ----------------------: | ---: | ---: | ---: | ----: | -----: | -------: |
+|    0 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0 |
+|    1 |      1 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0 |
+|    2 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0 |
+|    3 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0 |
+|    4 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      1 |        0 | 0 |
+
+ఇప్పుడు మీరు మీ మోడల్‌ను శిక్షణ ఇవ్వడానికి సిద్ధంగా ఉన్నారు!
+
+## మీ వర్గీకరణకర్తను ఎంచుకోవడం
+
+మీ డేటా శుభ్రంగా మరియు శిక్షణకు సిద్ధంగా ఉన్నప్పుడు, మీరు ఏ అల్గోరిథం ఉపయోగించాలో నిర్ణయించుకోవాలి.
+
+Scikit-learn వర్గీకరణను సూపర్వైజ్డ్ లెర్నింగ్ కింద వర్గీకరిస్తుంది, ఆ విభాగంలో మీరు వర్గీకరించడానికి అనేక మార్గాలను కనుగొంటారు. [వివిధత](https://scikit-learn.org/stable/supervised_learning.html) మొదటి చూపులో కొంచెం గందరగోళంగా ఉంటుంది. క్రింది పద్ధతులు అన్ని వర్గీకరణ సాంకేతికతలను కలిగి ఉంటాయి:
+
+- లీనియర్ మోడల్స్
+- సపోర్ట్ వెక్టర్ మెషీన్స్
+- స్టోకాస్టిక్ గ్రాడియెంట్ డిసెంట్
+- సమీప పొరుగువారు
+- గౌసియన్ ప్రాసెస్‌లు
+- నిర్ణయ వృక్షాలు
+- ఎంసెంబుల్ పద్ధతులు (వోటింగ్ క్లాసిఫయర్)
+- మల్టిక్లాస్ మరియు మల్టీఔట్పుట్ అల్గోరిథమ్స్ (మల్టిక్లాస్ మరియు మల్టీలేబుల్ వర్గీకరణ, మల్టిక్లాస్-మల్టీఔట్పుట్ వర్గీకరణ)
+
+> మీరు [న్యూరల్ నెట్‌వర్క్స్‌ను కూడా వర్గీకరణకు ఉపయోగించవచ్చు](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification), కానీ అది ఈ పాఠం పరిధికి బయట ఉంది.
+
+### ఏ వర్గీకరణకర్తను ఎంచుకోవాలి?
+
+అయితే, మీరు ఏ వర్గీకరణకర్తను ఎంచుకోవాలి? తరచుగా, అనేక వర్గీకరణకర్తలను పరీక్షించి మంచి ఫలితాన్ని చూసే విధానం ఒక పరీక్షా మార్గం. Scikit-learn ఒక [పక్కపక్కన పోలిక](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html)ను సృష్టించిన డేటాసెట్‌పై అందిస్తుంది, ఇందులో KNeighbors, SVC రెండు విధాలుగా, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB మరియు QuadraticDiscrinationAnalysis పోల్చబడతాయి, ఫలితాలు విజువలైజ్ చేయబడ్డాయి:
+
+![వర్గీకరణకర్తల పోలిక](../../../../translated_images/te/comparison.edfab56193a85e7f.webp)
+> Scikit-learn డాక్యుమెంటేషన్‌లో రూపొందించిన ప్లాట్లు
+
+> AutoML ఈ సమస్యను క్లౌడ్‌లో ఈ పోలికలను నడిపించి, మీ డేటాకు ఉత్తమ అల్గోరిథం ఎంచుకునే అవకాశం ఇస్తూ సులభంగా పరిష్కరిస్తుంది. దీన్ని [ఇక్కడ](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott) ప్రయత్నించండి
+
+### మెరుగైన దృష్టికోణం
+
+అనుమానించకుండా అంచనా వేయడం కంటే మెరుగైన మార్గం, ఈ డౌన్లోడ్ చేసుకునే [ML చీట్ షీట్](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott)లోని ఆలోచనలను అనుసరించడం. ఇక్కడ, మన మల్టిక్లాస్ సమస్య కోసం కొన్ని ఎంపికలు ఉన్నాయి:
+
+![మల్టిక్లాస్ సమస్యల కోసం చీట్ షీట్](../../../../translated_images/te/cheatsheet.07a475ea444d2223.webp)
+> మైక్రోసాఫ్ట్ యొక్క అల్గోరిథం చీట్ షీట్‌లోని ఒక భాగం, మల్టిక్లాస్ వర్గీకరణ ఎంపికలను వివరించడం
+
+✅ ఈ చీట్ షీట్‌ను డౌన్లోడ్ చేసుకుని, ప్రింట్ చేసి, మీ గోడపై పెట్టుకోండి!
+
+### తర్కం
+
+మన వద్ద ఉన్న పరిమితులను దృష్టిలో ఉంచుకుని వివిధ దృష్టికోణాలను తర్కం చేయగలమా చూద్దాం:
+
+- **న్యూరల్ నెట్‌వర్క్స్ చాలా భారమైనవి**. మన శుభ్రమైన, కానీ కనిష్ట డేటాసెట్ మరియు నోట్బుక్స్ ద్వారా స్థానికంగా శిక్షణ నడుపుతున్నందున, న్యూరల్ నెట్‌వర్క్స్ ఈ పనికి చాలా భారమైనవి.
+- **రెండు-వర్గ వర్గీకరణకర్త లేదు**. మేము రెండు-వర్గ వర్గీకరణకర్తను ఉపయోగించము, కాబట్టి ఒకటి-వర్సెస్-అల్ (one-vs-all) తప్పు అవుతుంది.
+- **నిర్ణయ వృక్షం లేదా లాజిస్టిక్ రిగ్రెషన్ పనిచేయవచ్చు**. ఒక నిర్ణయ వృక్షం పనిచేయవచ్చు, లేదా మల్టిక్లాస్ డేటాకు లాజిస్టిక్ రిగ్రెషన్.
+- **మల్టిక్లాస్ బూస్టెడ్ నిర్ణయ వృక్షాలు వేరే సమస్యను పరిష్కరిస్తాయి**. మల్టిక్లాస్ బూస్టెడ్ నిర్ణయ వృక్షం ప్రధానంగా నాన్‌పారామెట్రిక్ పనులకు అనుకూలం, ఉదా: ర్యాంకింగ్స్ నిర్మాణం కోసం, కాబట్టి మనకు ఉపయోగకరం కాదు.
+
+### Scikit-learn ఉపయోగించడం
+
+మనం Scikit-learn ఉపయోగించి మన డేటాను విశ్లేషించబోతున్నాము. అయితే, Scikit-learnలో లాజిస్టిక్ రిగ్రెషన్ ఉపయోగించడానికి అనేక మార్గాలు ఉన్నాయి. [పారామీటర్లను](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression) చూడండి.
+
+మూలంగా రెండు ముఖ్యమైన పారామీటర్లు ఉన్నాయి - `multi_class` మరియు `solver` - ఇవి Scikit-learnకి లాజిస్టిక్ రిగ్రెషన్ చేయమని అడిగేటప్పుడు నిర్దేశించాలి. `multi_class` విలువ ఒక నిర్దిష్ట ప్రవర్తనను అమలు చేస్తుంది. solver విలువ అనేది ఏ అల్గోరిథం ఉపయోగించాలో సూచిస్తుంది. అన్ని solverలు అన్ని `multi_class` విలువలతో జత కాబోవు.
+
+డాక్యుమెంటేషన్ ప్రకారం, మల్టిక్లాస్ సందర్భంలో శిక్షణ అల్గోరిథం:
+
+- **ఒకటి-వర్సెస్-రెస్ట్ (OvR) పద్ధతిని ఉపయోగిస్తుంది**, `multi_class` ఎంపిక `ovr`గా ఉంటే
+- **క్రాస్-ఎంట్రోపీ నష్టం ఉపయోగిస్తుంది**, `multi_class` ఎంపిక `multinomial`గా ఉంటే. (ప్రస్తుతం `multinomial` ఎంపిక ‘lbfgs’, ‘sag’, ‘saga’ మరియు ‘newton-cg’ solverలతో మాత్రమే మద్దతు ఇస్తుంది.)"
+
+> 🎓 ఇక్కడ 'పద్ధతి' అంటే 'ovr' (ఒకటి-వర్సెస్-రెస్ట్) లేదా 'multinomial'. లాజిస్టిక్ రిగ్రెషన్ అసలు బైనరీ వర్గీకరణకు రూపొందించబడినందున, ఈ పద్ధతులు మల్టిక్లాస్ వర్గీకరణ పనులను మెరుగ్గా నిర్వహించడానికి సహాయపడతాయి. [మూలం](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
+
+> 🎓 'solver' అనేది "ఆప్టిమైజేషన్ సమస్యలో ఉపయోగించే అల్గోరిథం" అని నిర్వచించబడింది. [మూలం](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).
+
+Scikit-learn ఈ పట్టికను అందిస్తుంది, వివిధ డేటా నిర్మాణాల సవాళ్లను solverలు ఎలా నిర్వహిస్తాయో వివరించడానికి:
+
+![solverలు](../../../../translated_images/te/solvers.5fc648618529e627.webp)
+
+## వ్యాయామం - డేటాను విభజించండి
+
+మీరు ఇటీవల ఒక పాఠంలో లాజిస్టిక్ రిగ్రెషన్ గురించి నేర్చుకున్నందున, మొదటి శిక్షణ ప్రయత్నానికి లాజిస్టిక్ రిగ్రెషన్‌పై దృష్టి పెట్టవచ్చు.
+`train_test_split()` పిలిచి మీ డేటాను శిక్షణ మరియు పరీక్షా సమూహాలుగా విభజించండి:
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
+```
+
+## వ్యాయామం - లాజిస్టిక్ రిగ్రెషన్ వర్తించండి
+
+మీరు మల్టిక్లాస్ సందర్భాన్ని ఉపయోగిస్తున్నందున, ఏ _పద్ధతి_ ఉపయోగించాలో మరియు ఏ _solver_ సెట్ చేయాలో ఎంచుకోవాలి. మల్టిక్లాస్ సెట్టింగ్‌తో మరియు **liblinear** solverతో LogisticRegression ఉపయోగించి శిక్షణ ఇవ్వండి.
+
+1. multi_class ను `ovr`గా మరియు solver ను `liblinear`గా సెట్ చేసి లాజిస్టిక్ రిగ్రెషన్ సృష్టించండి:
+
+    ```python
+    lr = LogisticRegression(multi_class='ovr',solver='liblinear')
+    model = lr.fit(X_train, np.ravel(y_train))
+    
+    accuracy = model.score(X_test, y_test)
+    print ("Accuracy is {}".format(accuracy))
+    ```
+
+    ✅ తరచుగా డిఫాల్ట్‌గా సెట్ అయ్యే `lbfgs` వంటి వేరే solverను ప్రయత్నించండి
+
+    > గమనిక, అవసరమైతే మీ డేటాను ఫ్లాటెన్ చేయడానికి Pandas [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) ఫంక్షన్ ఉపయోగించండి.
+
+    ఖచ్చితత్వం **80%** కంటే ఎక్కువగా మంచి ఉంది!
+
+1. మీరు ఈ మోడల్‌ను ఒక డేటా వరుస (#50) పరీక్షించి చూడవచ్చు:
+
+    ```python
+    print(f'ingredients: {X_test.iloc[50][X_test.iloc[50]!=0].keys()}')
+    print(f'cuisine: {y_test.iloc[50]}')
+    ```
+
+    ఫలితం ముద్రించబడుతుంది:
+
+   ```output
+   ingredients: Index(['cilantro', 'onion', 'pea', 'potato', 'tomato', 'vegetable_oil'], dtype='object')
+   cuisine: indian
+   ```
+
+   ✅ వేరే రో నంబర్ ప్రయత్నించి ఫలితాలను తనిఖీ చేయండి
+
+1. మరింత లోతుగా పరిశీలిస్తే, మీరు ఈ అంచనాకు ఖచ్చితత్వాన్ని తనిఖీ చేయవచ్చు:
+
+    ```python
+    test= X_test.iloc[50].values.reshape(-1, 1).T
+    proba = model.predict_proba(test)
+    classes = model.classes_
+    resultdf = pd.DataFrame(data=proba, columns=classes)
+    
+    topPrediction = resultdf.T.sort_values(by=[0], ascending = [False])
+    topPrediction.head()
+    ```
+
+    ఫలితం ముద్రించబడింది - భారతీయ వంటకం ఇది అత్యుత్తమ అంచనా, మంచి సంభావ్యతతో:
+
+    |          |        0 |
+    | -------: | -------: |
+    |   indian | 0.715851 |
+    |  chinese | 0.229475 |
+    | japanese | 0.029763 |
+    |   korean | 0.017277 |
+    |     thai | 0.007634 |
+
+    ✅ ఈ మోడల్ భారతీయ వంటకం అని ఎందుకు చాలా నమ్మకం కలిగి ఉందో మీరు వివరించగలరా?
+
+1. మీరు రిగ్రెషన్ పాఠాలలో చేసినట్లుగా క్లాసిఫికేషన్ రిపోర్ట్ ముద్రించి మరింత వివరాలు పొందండి:
+
+    ```python
+    y_pred = model.predict(X_test)
+    print(classification_report(y_test,y_pred))
+    ```
+
+    |              | precision | recall | f1-score | support |
+    | ------------ | --------- | ------ | -------- | ------- |
+    | chinese      | 0.73      | 0.71   | 0.72     | 229     |
+    | indian       | 0.91      | 0.93   | 0.92     | 254     |
+    | japanese     | 0.70      | 0.75   | 0.72     | 220     |
+    | korean       | 0.86      | 0.76   | 0.81     | 242     |
+    | thai         | 0.79      | 0.85   | 0.82     | 254     |
+    | accuracy     | 0.80      | 1199   |          |         |
+    | macro avg    | 0.80      | 0.80   | 0.80     | 1199    |
+    | weighted avg | 0.80      | 0.80   | 0.80     | 1199    |
+
+## 🚀సవాలు
+
+ఈ పాఠంలో, మీరు శుభ్రపరిచిన డేటాను ఉపయోగించి పదార్థాల శ్రేణి ఆధారంగా జాతీయ వంటకాన్ని అంచనా వేయగల యంత్ర అభ్యాస మోడల్‌ను నిర్మించారు. డేటాను వర్గీకరించడానికి Scikit-learn అందించే అనేక ఎంపికలను చదవడానికి కొంత సమయం తీసుకోండి. 'solver' అనే భావనలో మరింత లోతుగా వెళ్ళి దాని వెనుక జరిగే ప్రక్రియలను అర్థం చేసుకోండి.
+
+## [పోస్ట్-లెక్చర్ క్విజ్](https://ff-quizzes.netlify.app/en/ml/)
+
+## సమీక్ష & స్వీయ అధ్యయనం
+
+లాజిస్టిక్ రిగ్రెషన్ వెనుక గణితాన్ని మరింత లోతుగా తెలుసుకోండి [ఈ పాఠంలో](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
+## అసైన్‌మెంట్
+
+[solvers ను అధ్యయనం చేయండి](assignment.md)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**అస్పష్టత**:  
+ఈ పత్రాన్ని AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నించినప్పటికీ, ఆటోమేటెడ్ అనువాదాల్లో పొరపాట్లు లేదా తప్పిదాలు ఉండవచ్చు. మూల పత్రం దాని స్వదేశీ భాషలో అధికారిక మూలంగా పరిగణించాలి. ముఖ్యమైన సమాచారానికి, ప్రొఫెషనల్ మానవ అనువాదం సిఫార్సు చేయబడుతుంది. ఈ అనువాదం వాడకంలో ఏర్పడిన ఏవైనా అపార్థాలు లేదా తప్పుదారితీసే అర్థాలు కోసం మేము బాధ్యత వహించము.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

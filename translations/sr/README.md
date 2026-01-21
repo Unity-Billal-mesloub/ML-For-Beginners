@@ -1,0 +1,232 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "0a6f4476a4f3934a4aa47c1bf47158bc",
+  "translation_date": "2026-01-16T16:03:16+00:00",
+  "source_file": "README.md",
+  "language_code": "sr"
+}
+-->
+[![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
+[![GitHub issues](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
+[![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
+[![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
+
+### 🌐 Подршка за више језика
+
+#### Подржано путем GitHub Action (аутоматски и увек ажурно)
+
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
+[Арапски](../ar/README.md) | [Бенгалски](../bn/README.md) | [Бугарски](../bg/README.md) | [Бирмански (Мјанмар)](../my/README.md) | [Кинески (поједностављени)](../zh/README.md) | [Кинески (традиционални, Хонг Конг)](../hk/README.md) | [Кинески (традиционални, Макао)](../mo/README.md) | [Кинески (традиционални, Тајван)](../tw/README.md) | [Хрватски](../hr/README.md) | [Чешки](../cs/README.md) | [Дански](../da/README.md) | [Холандски](../nl/README.md) | [Естонски](../et/README.md) | [Фински](../fi/README.md) | [Француски](../fr/README.md) | [Немачки](../de/README.md) | [Грчки](../el/README.md) | [Хебрејски](../he/README.md) | [Хинди](../hi/README.md) | [Мађарски](../hu/README.md) | [Индонежански](../id/README.md) | [Италијански](../it/README.md) | [Јапански](../ja/README.md) | [Каннада](../kn/README.md) | [Корeјски](../ko/README.md) | [Литвански](../lt/README.md) | [Малајски](../ms/README.md) | [Малајалам](../ml/README.md) | [Марати](../mr/README.md) | [Непали](../ne/README.md) | [Нигеријски Пиджин](../pcm/README.md) | [Норвешки](../no/README.md) | [Персијски (Фарси)](../fa/README.md) | [Пољски](../pl/README.md) | [Португалски (Бразил)](../br/README.md) | [Португалски (Португал)](../pt/README.md) | [Пенџапски (Гурмуки)](../pa/README.md) | [Румунски](../ro/README.md) | [Руски](../ru/README.md) | [Српски (ћирилица)](./README.md) | [Словачки](../sk/README.md) | [Словеначки](../sl/README.md) | [Шпански](../es/README.md) | [Свехили](../sw/README.md) | [Шведски](../sv/README.md) | [Тагалог (Филипински)](../tl/README.md) | [Тамилски](../ta/README.md) | [Телугу](../te/README.md) | [Тајландски](../th/README.md) | [Турски](../tr/README.md) | [Украјински](../uk/README.md) | [Урду](../ur/README.md) | [Вијетнамски](../vi/README.md)
+
+> **Више волите локално клонирање?**
+
+> Ово складиште садржи више од 50 превода који значајно повећавају величину преузимања. За клонирање без превода, користите sparse checkout:
+> ```bash
+> git clone --filter=blob:none --sparse https://github.com/microsoft/ML-For-Beginners.git
+> cd ML-For-Beginners
+> git sparse-checkout set --no-cone '/*' '!translations' '!translated_images'
+> ```
+> Ово вам даје све што вам је потребно да завршите курс са много бржим преузимањем.
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
+
+#### Придружите се нашој заједници
+
+[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
+
+Тренутно имамо серију на Discord-у под називом "учи са AI", сазнајте више и придружите нам се на [Learn with AI Series](https://aka.ms/learnwithai/discord) од 18. до 30. септембра 2025. године. Добит ћете савете и трикове за коришћење GitHub Copilot-а за Data Science.
+
+![Учите са AI серијом](../../../../translated_images/sr/3.9b58fd8d6c373c20.webp)
+
+# Машинско учење за почетнике - Курикулум
+
+> 🌍 Путујте око света док истражујемо Машинско учење кроз призму светских култура 🌍
+
+Cloud Advocates у Microsoft-у са задовољством нуде 12-недељни, 26-лекцијски курикулум који се бави **Машинским учењем**. У овом курикулуму учићете о ономе што се понекад назива **класично машинско учење**, користећи углавном библиотеку Scikit-learn и избегавајући дубоко учење, које је покривено у нашем [AI за почетнике курикулуму](https://aka.ms/ai4beginners). Такође упарите ове лекције са нашим ['Data Science for Beginners' курикулумом](https://aka.ms/ds4beginners).
+
+Путујте с нама широм света док примењујемо ове класичне технике на податке из различитих делова света. Свакa лекцијa укључује квиз пре и после лекције, писане упуте за завршетак лекције, решење, задатак и још много тога. Наша пројектно оријентисана педагогија омогућава вам да учите док градите, проверен начин да нова знања “зароне”.
+
+**✍️ Срдачна захвалност нашим ауторима** Јен Лупер, Стивен Хауел, Франческа Лаззери, Томоми Имура, Кеси Бревиу, Дмитриј Сошников, Крис Норинг, Анирбан Мукерџи, Орнела Алтуњан, Рут Јакубу и Ејми Бојд
+
+**🎨 Захвалност такође нашим илустраторима** Томоми Имура, Дасани Мадипали и Јен Лупер
+
+**🙏 Посебне захвалности 🙏 нашим Microsoft Student Ambassador ауторима, рецензентима и сарадницима садржаја**, нарочито Ришиту Даглију, Мухамаду Сакибу Хану Инану, Рохану Рају, Александру Петреску, Абхишеку Џајсвалу, Наврину Табасум, Јоану Самуила и Снигдхи Агарвал
+
+**🤩 Посебна захвалност Microsoft Student Ambassadors Ерику Вањау, Јаслин Сонди и Видуши Гупта за наше Р лекције!**
+
+# Почетак рада
+
+Пратите следеће кораке:
+1. **Форк ускладиште**: Кликните на дугме "Fork" у горњем десном углу ове странице.
+2. **Клонирај ускладиште**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+
+> [пронађите све додатне ресурсе за овај курс у нашој колекцији Microsoft Learn](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+
+> 🔧 **Треба вам помоћ?** Погледајте наш [Водич за решавање проблема](TROUBLESHOOTING.md) за решења уобичајених проблема са инсталацијом, подешавањем и покретањем лекција.
+
+
+**[Студенти](https://aka.ms/student-page)**, да бисте користили овај курикулум, форкујте цео репозиторијум на свој GitHub налог и радите вежбе самостално или у групи:
+
+- Почните са квизом пре предавања.
+- Прочитајте предавање и завршите активности, правећи паузе и размишљајући на сваком провери знања.
+- Покушајте да направите пројекте разумећи лекције уместо да само покрећете код решења; међутим тај код је доступан у фасциклама `/solution` у свакој лекцији оријентисаној на пројекте.
+- Урадите квиз после предавања.
+- Завршите изазов.
+- Завршите задатак.
+- Након завршетка групе лекција, посетите [Форум за дискусију](https://github.com/microsoft/ML-For-Beginners/discussions) и "учите гласно" тако што ћете попунити одговарајућу PAT рубрику. ‘PAT’ је алат за процену напретка који се попуњава као рубрика како бисте унапредили своје учење. Такође можете реаговати на друге PAT-ове како бисмо учили заједно.
+
+> За додатно учење препоручујемо да пратите ове [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) модуле и путеве учења.
+
+**Наставници**, укључили смо неке предлоге у [датотеци за наставнике](for-teachers.md) о томе како користити овај курикулум.
+
+---
+
+## Видео прегледи
+
+Неке лекције су доступне у облику кратких видеа. Можете их пронаћи у самом тексту лекција или на [ML за почетнике plejlistи на Microsoft Developer YouTube каналу](https://aka.ms/ml-beginners-videos) кликом на слику испод.
+
+[![ML за почетнике банер](../../../../translated_images/sr/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
+
+---
+
+## Упознајте тим
+
+[![Промо видео](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
+
+**Гиф направио** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
+
+> 🎥 Кликните слику изнад за видео о пројекту и људима који су га направили!
+
+---
+
+## Педагогија
+
+Изабрали смо два педагошка принципа приликом израде овог курикулума: обезбеђивање практичног, **проектно заснованог** рада и укључивање **честих квизова**. Поред тога, овај курикулум има заједничку **тему** како би имао кохезију.
+
+Обезбеђивањем да садржај буде повезан са пројектима, процес учења је занимљивији за студенте и задржавање концепата ће бити ојачано. Поред тога, квиз са малим улогом пре часова поставља намеру студента према учењу теме, док други квиз након часа осигурава даље задржавање знања. Овај курикулум је дизајниран да буде флексибилан и забаван и може се узимати у целини или делимично. Пројекти почињу од малих и постају све сложенији до краја 12-недељног циклуса. Овај курикулум укључује и постскриптум о применама ML у стварном свету, који се може користити као додатни бодови или као основа за дискусију.
+
+> Пронађите наше смернице у [Коду понашања](CODE_OF_CONDUCT.md), [Учествовању](CONTRIBUTING.md), [Преводима](TRANSLATIONS.md) и [Решавању проблема](TROUBLESHOOTING.md). Добродошли су ваши конструктивни коментари!
+
+## Свакa лекциja укључује
+
+- опциони скицнот
+- опциони додатни видео
+- видео преглед (само неке лекције)
+- [квиз за загревање пре предавања](https://ff-quizzes.netlify.app/en/ml/)
+- написану лекцију
+- за лекције засноване на пројектима, корак по корак упутства како изградити пројекат
+- провере знања
+- изазов
+- додатно читање
+- задатак
+- [квиз после предавања](https://ff-quizzes.netlify.app/en/ml/)
+
+> **Напомена о језицима**: Ове лекције су углавном написане у Питону, али многе су такође доступне и на Р-у. Да бисте урадили Р лекцију, идите у фасциклу `/solution` и потражите Р лекције. Оне имају .rmd екстензију која представља **R Markdown** датотеку која се може једноставно дефинисати као уграђивање `кодних делова` (R или других језика) и `YAML заглавља` (које води како форматирати излаз, као PDF) у `Markdown документ`. Као таква, служи као примерни оквир за ауторство у науци о подацима јер вам омогућава да комбинујете свој код, његов излаз и своје мисли тако што им дозвољава да их запишете у Markdown. Штавише, R Markdown документи се могу рендеровати у формате као PDF, HTML или Word.
+> **Напомена о квизовима**: Сви квизови су садржани у [фасцикли Quiz App](../../quiz-app), укупно 52 квиза са по три питања. Повеезани су у оквиру лекција, али апликацију за квизове можете покренути и локално; пратите упутства у фасцикли `quiz-app` за локални хостинг или деплој на Azure.
+
+| Број лекције |                             Тема                               |                  Груписање лекција                   | Циљеви учења                                                                                                                  |                                                               Повезана лекција                                                                |                      Аутор                        |
+| :----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------ | :-----------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------: |
+|      01      |                Увод у машинско учење                           |      [Introduction](1-Introduction/README.md)       | Упознајте основне појмове машинског учења                                                                                      |                                             [Lesson](1-Introduction/1-intro-to-ML/README.md)                                             |                     Muhammad                      |
+|      02      |                Историја машинског учења                        |      [Introduction](1-Introduction/README.md)       | Упознајте историју овог поља                                                                                                  |                                            [Lesson](1-Introduction/2-history-of-ML/README.md)                                            |                   Jen and Amy                     |
+|      03      |                 Правичност и машинско учење                     |      [Introduction](1-Introduction/README.md)       | Која су важна филозофска питања о правичности која студенти треба да размотре приликом изградње и примене МУ модела?             |                                              [Lesson](1-Introduction/3-fairness/README.md)                                               |                      Tomomi                       |
+|      04      |                Технике машинског учења                         |      [Introduction](1-Introduction/README.md)       | Које технике истраживачи МУ користе за изградњу МУ модела?                                                                     |                                          [Lesson](1-Introduction/4-techniques-of-ML/README.md)                                           |                   Chris and Jen                    |
+|      05      |                   Увод у регресију                             |        [Regression](2-Regression/README.md)         | Почните са Python-ом и Scikit-learn-ом за регресионе моделе                                                                     |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |           Jen • Eric Wanjau          |
+|      06      |                Цене тикви у Северној Америци 🎃                 |        [Regression](2-Regression/README.md)         | Визуализујте и очистите податке као припрему за МУ                                                                               |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |           Jen • Eric Wanjau          |
+|      07      |                Цене тикви у Северној Америци 🎃                 |        [Regression](2-Regression/README.md)         | Изградите линеарне и полиномијалне регресионе моделе                                                                             |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |           Jen and Dmitry • Eric Wanjau          |
+|      08      |                Цене тикви у Северној Америци 🎃                 |        [Regression](2-Regression/README.md)         | Изградите логистички регресионни модел                                                                                          |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |           Jen • Eric Wanjau          |
+|      09      |                          Веб апликација 🔌                      |           [Web App](3-Web-App/README.md)            | Направите веб апликацију која користи ваш оспособљени модел                                                                     |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                        Jen                         |
+|      10      |                 Увод у класификацију                          |    [Classification](4-Classification/README.md)     | Очистите, припремите и визуелизујте податке; увод у класификацију                                                               | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  |         Jen and Cassie • Eric Wanjau          |
+|      11      |             Укусне азијске и индијске кухиње 🍜                |    [Classification](4-Classification/README.md)     | Увод у класификаторе                                                                                                           | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) |         Jen and Cassie • Eric Wanjau          |
+|      12      |             Укусне азијске и индијске кухиње 🍜                |    [Classification](4-Classification/README.md)     | Додатни класификатори                                                                                                          | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) |         Jen and Cassie • Eric Wanjau          |
+|      13      |             Укусне азијске и индијске кухиње 🍜                |    [Classification](4-Classification/README.md)     | Направите веб апликацију препоручивача на основу вашег модела                                                                     |                                              [Python](4-Classification/4-Applied/README.md)                                              |                        Jen                         |
+|      14      |                   Увод у кластерисање                          |        [Clustering](5-Clustering/README.md)         | Очистите, припремите и визуелизујте податке; увод у кластерисање                                                                 |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |           Jen • Eric Wanjau          |
+|      15      |              Истраживање музичког укуса у Нигерији 🎧           |        [Clustering](5-Clustering/README.md)         | Истражите K-Means методу за кластерисање                                                                                        |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |           Jen • Eric Wanjau          |
+|      16      |        Увод у обраду природног језика ☕️                      |   [Natural language processing](6-NLP/README.md)    | Научите основе НПЈ кроз израду једноставног бота                                                                                |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                     Stephen                       |
+|      17      |                      Уобичајени задаци у НПЈ ☕️               |   [Natural language processing](6-NLP/README.md)    | Продубите знање о НПЈ разумевањем уобичајених задатака у раду са језичким структурама                                           |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                     Stephen                       |
+|      18      |             Превод и анализа сентимента ♥️                     |   [Natural language processing](6-NLP/README.md)    | Превод и анализа сентимента са Џејн Остин                                                                                      |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                     Stephen                       |
+|      19      |                  Романтични хотели Европе ♥️                   |   [Natural language processing](6-NLP/README.md)    | Анализа сентимента коришћењем рецензија хотела 1                                                                               |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                     Stephen                       |
+|      20      |                  Романтични хотели Европе ♥️                   |   [Natural language processing](6-NLP/README.md)    | Анализа сентимента коришћењем рецензија хотела 2                                                                               |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                     Stephen                       |
+|      21      |            Увод у прогнозирање временских серија              |        [Time series](7-TimeSeries/README.md)        | Увод у прогнозирање временских серија                                                                                          |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                    Francesca                      |
+|      22      | ⚡️ Светска потрошња електричне енергије ⚡️ - прогнозирање временских серија помоћу ARIMA |        [Time series](7-TimeSeries/README.md)        | Прогнозирање временских серија помоћу ARIMA                                                                                     |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                    Francesca                      |
+|      23      |  ⚡️ Светска потрошња електричне енергије ⚡️ - прогнозирање временских серија помоћу SVR  |        [Time series](7-TimeSeries/README.md)        | Прогнозирање временских серија помоћу регресора потпорних вектора                                                               |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                     Anirban                       |
+|      24      |             Увод у појачано учење                              | [Reinforcement learning](8-Reinforcement/README.md) | Увод у појачано учење помоћу Q-учења                                                                                            |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                      Dmitry                        |
+|      25      |                 Помозите Петру да избегне вука! 🐺             | [Reinforcement learning](8-Reinforcement/README.md) | Појачано учење помоћу Gym-а                                                                                                    |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                      Dmitry                        |
+|  Постскрипт   |            Рeални светски сценарији и примене МУ             |      [ML in the Wild](9-Real-World/README.md)       | Занимљиве и поучне примене класичног машинског учења у стварном свету                                                          |                                             [Lesson](9-Real-World/1-Applications/README.md)                                              |                       Тим                          |
+|  Постскрипт   |            Дијагностика модела МУ помоћу RAI табле            |      [ML in the Wild](9-Real-World/README.md)       | Дијагностика модела машинског учења уз коришћење компонената RAI табле                                                            |                                             [Lesson](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                     Ruth Yakubu                     |
+
+> [пронађите све додатне ресурсе за овај курс у нашој Microsoft Learn колекцији](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+
+## Приступ без везе
+
+Ову документацију можете покренути без везе користећи [Docsify](https://docsify.js.org/#/). Форкујте овај репозиторијум, [инсталирајте Docsify](https://docsify.js.org/#/quickstart) на вашем рачунару, и затим у коренској фасцикли овог репа укуцајте `docsify serve`. Веб-сајт ће бити доступан на порту 3000 на вашем локалном рачунару: `localhost:3000`.
+
+## PDF-ови
+
+Пронађите PDF наставног плана са линковима [овде](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
+
+
+## 🎒 Други курсеви 
+
+Наш тим прави и друге курсеве! Погледајте:
+
+<!-- CO-OP TRANSLATOR OTHER COURSES START -->
+### LangChain
+[![LangChain4j for Beginners](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
+[![LangChain.js for Beginners](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
+
+---
+
+### Azure / Edge / MCP / Agents
+[![AZD for Beginners](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Edge AI for Beginners](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![MCP for Beginners](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI Agents for Beginners](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
+
+---
+ 
+### Generative AI Series
+[![Генеративна вештачка интелигенција за почетнике](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Генеративна вештачка интелигенција (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
+[![Генеративна вештачка интелигенција (Јава)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
+[![Генеративна вештачка интелигенција (ЈаваСкрипт)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
+
+---
+ 
+### Основно учење
+[![Машинско учење за почетнике](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
+[![Наука о подацима за почетнике](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
+[![Вештачка интелигенција за почетнике](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
+[![Кибербезбедност за почетнике](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
+[![Веб развој за почетнике](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
+[![Интернет ствари за почетнике](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![XR развој за почетнике](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
+
+---
+ 
+### Серия Копилот
+[![Копилот за заједничко програмирање са вештачком интелигенцијом](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+[![Копилот за C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
+[![Копилот авантура](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
+<!-- CO-OP TRANSLATOR OTHER COURSES END -->
+
+## Добијање помоћи
+
+Ако се заглавите или имате било каква питања у вези са израдом AI апликација. Придружите се осталим учесницима и искусним програмерима у дискусијама о MCP-у. То је подршка заједница где су питања добродошла, а знање се слободно дели.
+
+[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
+
+Ако имате повратне информације о производу или грешке током израде, посетите:
+
+[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Изјава о одрицању од одговорности**:
+Овај документ је преведен помоћу АI преводилачке услуге [Co-op Translator](https://github.com/Azure/co-op-translator). Иако се трудимо да буде прецизно, молимо вас да имате у виду да аутоматизовани преводи могу садржати грешке или нетачности. Приоритетни извор је оригинални документ на његовом изворном језику. За критичне информације препоручује се професионални превод човека. Нисмо одговорни за било каква неспоразумевања или погрешне тумачења настала коришћењем овог превода.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
